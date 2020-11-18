@@ -1,7 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-const { Model } = require("sequelize");
+// const { Model } = require("sequelize");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -23,8 +23,8 @@ module.exports = function(app) {
       email: req.body.email,
       password: req.body.password,
       fname: req.body.fname,
-        lname: req.body.lname,
-        bio: req.body.bio
+      lname: req.body.lname,
+      bio: req.body.bio
     })
       .then(() => {
         res.redirect(307, "/api/login");
@@ -57,7 +57,7 @@ module.exports = function(app) {
         id: req.user.id,
         fname: req.user.fname,
         lname: req.user.lname,
-        bio: req.user.bio,
+        bio: req.user.bio
       });
     }
   });
