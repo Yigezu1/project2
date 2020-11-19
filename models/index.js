@@ -32,5 +32,15 @@ Object.keys(db).forEach(function(modelName) {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.User = require("./user.js")(sequelize, Sequelize);
+db.Event = require("./event.js")(sequelize, Sequelize);
 
+db.Event.belongsToMany(db.User, {
+  through: "Userevent"
+
+});
+db.User.belongsToMany(db.Event, {
+  through: "Userevent"
+
+});
 module.exports = db;
