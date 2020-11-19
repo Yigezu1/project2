@@ -49,23 +49,23 @@ module.exports = function(app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
 
-      db.Userevent.findAll({
+      db.User.findAll({
         where: {
-          userId: req.user.id
+          id: req.user.id
         },
-        include: [db.Event]
+        include: db.Event
       }).then(dbEventList => {
         res.json(dbEventList);
       });
       // db.User.findAll()
 
-      res.json({
-        email: req.user.email,
-        id: req.user.id,
-        fname: req.user.fname,
-        lname: req.user.lname,
-        bio: req.user.bio
-      });
+      // res.json({
+      //   email: req.user.email,
+      //   id: req.user.id,
+      //   fname: req.user.fname,
+      //   lname: req.user.lname,
+      //   bio: req.user.bio
+      // });
     }
   });
 };
