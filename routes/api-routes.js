@@ -51,7 +51,7 @@ module.exports = function(app) {
 
       db.Userevent.findAll({
         where: {
-          id: req.user.id
+          userId: req.user.id
         },
         include: [db.Event]
       }).then(dbEventList => {
