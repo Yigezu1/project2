@@ -1,12 +1,46 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
-// const { Model } = require("sequelize");
+const isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
+  app.get("/", (req, res) => {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/members");
+    }
+    res.render("signup", {});
+  });
+
+  app.get("/login", (req, res) => {
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/members");
+    }
+    res.render("login", {});
+  });
+
+  // Here we've add our isAuthenticated middleware to this route.
+  // If a user who is not logged in tries to access this route they will be redirected to the signup page
+  app.get("/members", isAuthenticated, (req, res) => {
+    db.Event.findAll({
+      include: db.User
+    }).then(dbEventList => {
+      res.render("user", {
+        userInfo: {
+          email: req.user.email,
+          id: req.user.id
+        },
+        data: {
+          dbEventList
+        }
+      });
+    });
+  });
+
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
@@ -40,7 +74,47 @@ module.exports = function(app) {
     res.redirect("/");
   });
 
-  // Route for getting some data about our user to be used client side (member page)
+  // Route for getting some data about our user to be used client side
+  // THIS IS FOR CREATE EVENT & SEE MORE EVENTS
+
+  app.post("/api/create-event", (req, res) => {
+    db.Event.create({
+      // CODE HERE
+    })
+      .then(() => {
+        res.json({});
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.post("/api/join-event/:eventId", (req, res) => {
+    db.Userevent.create({
+      // req.user.id
+      // req.params.eventId
+    })
+      .then(() => {
+        res.json({});
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
+  app.delete("/api/unjoin-event/:eventId", (req, res) => {
+    db.Userevent.destroy({
+      // req.user.id
+      // req.params.eventId
+    })
+      .then(() => {
+        res.json({});
+      })
+      .catch(err => {
+        res.status(401).json(err);
+      });
+  });
+
   app.get("/api/user_data", (req, res) => {
     if (!req.user) {
       // The user is not logged in, send back an empty object
@@ -49,22 +123,27 @@ module.exports = function(app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
 
-      db.User.findAll({
-        where: {
-          id: req.user.id
-        },
-        include: db.Event
+      db.Event.findAll({
+        include: db.User
       }).then(dbEventList => {
-        res.json(dbEventList);
+        res.render("events", {
+          userInfo: {
+            email: req.user.email,
+            id: req.user.id
+          },
+          data: {
+            dbEventList
+          }
+        });
       });
-      // db.User.findAll()
 
-      // res.json({
-      //   email: req.user.email,
-      //   id: req.user.id,
-      //   fname: req.user.fname,
-      //   lname: req.user.lname,
-      //   bio: req.user.bio
+      // db.User.findAll({
+      //   where: {
+      //     id: req.user.id
+      //   },
+      //   include: db.Event
+      // }).then(dbEventList => {
+      //   res.json(dbEventList);
       // });
     }
   });
