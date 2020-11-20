@@ -6,3 +6,8 @@ form.login {
 .fa-github {
   color: white
 }
+
+#event-description {
+  height: 150px;
+  text-align: initial;
+}
