@@ -9,26 +9,6 @@ $(document).ready(() => {
   });
 
   // Puts new event data into allEvents array
-<<<<<<< Updated upstream
-  $("#create-evnet").onclick(() => {
-    newEntry.eventName = $("#event-name")
-      .value()
-      .trim();
-    newEntry.eventDescription = $("#description")
-      .value()
-      .trim();
-    newEntry.eventLocation = $("#location")
-      .value()
-      .trim();
-    newEntry.eventDate = $("#date")
-      .value()
-      .trim();
-    newEntry.eventStartTime = $("#start-time")
-      .value()
-      .trim();
-    newEntry.eventEndTime = $("#end-time")
-      .value()
-=======
   $("#create-event").click(event => {
     event.preventDefault();
     newEntry.eventName = $("#event-input")
@@ -48,7 +28,6 @@ $(document).ready(() => {
       .trim();
     newEntry.eventEndTime = $("#event-end")
       .val()
->>>>>>> Stashed changes
       .trim();
 
     allEvents.push(newEntry);
