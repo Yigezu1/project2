@@ -103,7 +103,7 @@ module.exports = function(app) {
       link: req.body.link
     })
       .then(() => {
-        res.json({});
+        res.redirect("/members");
       })
       .catch(err => {
         res.status(401).json(err);

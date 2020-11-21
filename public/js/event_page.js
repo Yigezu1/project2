@@ -9,42 +9,44 @@ $(document).ready(() => {
   });
 
   // Puts new event data into allEvents array
-  $("#create-evnet").onclick(() => {
+
+  $("#create-event").click(event => {
+    event.preventDefault();
     newEntry.eventName = $("#event-input")
-      .value()
+      .val()
       .trim();
     newEntry.eventDescription = $("#event-description")
-      .value()
+      .val()
       .trim();
     newEntry.eventLocation = $("#event-location")
-      .value()
+      .val()
       .trim();
     newEntry.eventDate = $("#event-date")
-      .value()
+      .val()
       .trim();
     newEntry.eventStartTime = $("#event-start")
-      .value()
+      .val()
       .trim();
     newEntry.eventEndTime = $("#event-end")
-      .value()
+      .val()
       .trim();
 
     allEvents.push(newEntry);
-    createEvent();
+    createEvent(newEntry);
   });
 
   // Delets selected event
-  $("#delete-event").onclick(() => {
+  $("#delete-event").click(() => {
     deleteEvent(id);
   });
 
   // Edits selected event
-  $("#edit-event").onclick(() => {
+  $("#edit-event").click(() => {
     editEvent(entry);
   });
 
   // Allows user to join event
-  $("#join-event").onclick(() => {
+  $("#join-event").click(() => {
     joinEvent(user);
   });
 
@@ -85,7 +87,7 @@ $(document).ready(() => {
   function createEvent(newEvent) {
     $.ajax({
       method: "POST",
-      url: "/api/events/",
+      url: "/api/create-event",
       data: newEvent
     }).then(() => {
       getEvents();
