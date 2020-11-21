@@ -9,6 +9,7 @@ $(document).ready(() => {
   });
 
   // Puts new event data into allEvents array
+
   $("#create-event").click(event => {
     event.preventDefault();
     newEntry.eventName = $("#event-input")
