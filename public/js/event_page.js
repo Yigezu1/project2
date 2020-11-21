@@ -9,6 +9,7 @@ $(document).ready(() => {
   });
 
   // Puts new event data into allEvents array
+<<<<<<< Updated upstream
   $("#create-evnet").onclick(() => {
     newEntry.eventName = $("#event-name")
       .value()
@@ -27,24 +28,45 @@ $(document).ready(() => {
       .trim();
     newEntry.eventEndTime = $("#end-time")
       .value()
+=======
+  $("#create-event").click(event => {
+    event.preventDefault();
+    newEntry.eventName = $("#event-input")
+      .val()
+      .trim();
+    newEntry.eventDescription = $("#event-description")
+      .val()
+      .trim();
+    newEntry.eventLocation = $("#event-location")
+      .val()
+      .trim();
+    newEntry.eventDate = $("#event-date")
+      .val()
+      .trim();
+    newEntry.eventStartTime = $("#event-start")
+      .val()
+      .trim();
+    newEntry.eventEndTime = $("#event-end")
+      .val()
+>>>>>>> Stashed changes
       .trim();
 
     allEvents.push(newEntry);
-    createEvent();
+    createEvent(newEntry);
   });
 
   // Delets selected event
-  $("#delete-event").onclick(() => {
+  $("#delete-event").click(() => {
     deleteEvent(id);
   });
 
   // Edits selected event
-  $("#edit-event").onclick(() => {
+  $("#edit-event").click(() => {
     editEvent(entry);
   });
 
   // Allows user to join event
-  $("#join-event").onclick(() => {
+  $("#join-event").click(() => {
     joinEvent(user);
   });
 
@@ -85,7 +107,7 @@ $(document).ready(() => {
   function createEvent(newEvent) {
     $.ajax({
       method: "POST",
-      url: "/api/events/",
+      url: "/api/create-event",
       data: newEvent
     }).then(() => {
       getEvents();
