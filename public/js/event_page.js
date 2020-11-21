@@ -10,22 +10,22 @@ $(document).ready(() => {
 
   // Puts new event data into allEvents array
   $("#create-evnet").onclick(() => {
-    newEntry.eventName = $("#event-name")
+    newEntry.eventName = $("#event-input")
       .value()
       .trim();
-    newEntry.eventDescription = $("#description")
+    newEntry.eventDescription = $("#event-description")
       .value()
       .trim();
-    newEntry.eventLocation = $("#location")
+    newEntry.eventLocation = $("#event-location")
       .value()
       .trim();
-    newEntry.eventDate = $("#date")
+    newEntry.eventDate = $("#event-date")
       .value()
       .trim();
-    newEntry.eventStartTime = $("#start-time")
+    newEntry.eventStartTime = $("#event-start")
       .value()
       .trim();
-    newEntry.eventEndTime = $("#end-time")
+    newEntry.eventEndTime = $("#event-end")
       .value()
       .trim();
 
