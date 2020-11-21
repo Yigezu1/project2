@@ -41,6 +41,22 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/events", isAuthenticated, (req, res) => {
+    db.Event.findAll({
+      include: db.User
+    }).then(dbEventList => {
+      res.render("events", {
+        userInfo: {
+          email: req.user.email,
+          id: req.user.id
+        },
+        data: {
+          dbEventList
+        }
+      });
+    });
+  });
+
   app.post("/api/login", passport.authenticate("local"), (req, res) => {
     // Sending back a password, even a hashed password, isn't a good idea
     res.json({
@@ -79,7 +95,12 @@ module.exports = function(app) {
 
   app.post("/api/create-event", (req, res) => {
     db.Event.create({
-      // CODE HERE
+      name: req.body.name,
+      description: req.body.description,
+      state: req.body.state,
+      city: req.body.city,
+      street: req.body.street,
+      link: req.body.link
     })
       .then(() => {
         res.json({});
