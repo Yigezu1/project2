@@ -18,6 +18,12 @@ $(document).ready(() => {
     newEntry.eventDescription = $("#event-description")
       .val()
       .trim();
+    newEntry.eventState = $("#event-state")
+      .val()
+      .trim();
+    newEntry.eventCity = $("#event-city")
+      .val()
+      .trim();
     newEntry.eventLocation = $("#event-location")
       .val()
       .trim();
