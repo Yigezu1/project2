@@ -106,7 +106,7 @@ module.exports = function(app) {
       link: req.body.link
     })
       .then(() => {
-        res.redirect("/members");
+        res.redirect("/events");
       })
       .catch(err => {
         res.status(401).json(err);
@@ -147,6 +147,19 @@ module.exports = function(app) {
       // Otherwise send back the user's email and id
       // Sending back a password, even a hashed password, isn't a good idea
 
+      db.User.findAll({
+        where: {
+          id: req.user.id
+        },
+        include: db.Event
+      }).then(dbEventList => {
+        res.json(dbEventList);
+        // res.render("user", {
+        //   data: dbEventList
+        // });
+      });
+
+      /* 
       db.Event.findAll({
         include: db.User
       }).then(dbEventList => {
@@ -159,16 +172,7 @@ module.exports = function(app) {
             dbEventList
           }
         });
-      });
-
-      // db.User.findAll({
-      //   where: {
-      //     id: req.user.id
-      //   },
-      //   include: db.Event
-      // }).then(dbEventList => {
-      //   res.json(dbEventList);
-      // });
+      }); */
     }
   });
 };
