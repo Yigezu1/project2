@@ -95,11 +95,14 @@ module.exports = function(app) {
 
   app.post("/api/create-event", (req, res) => {
     db.Event.create({
-      name: req.body.name,
-      description: req.body.description,
-      state: req.body.state,
-      city: req.body.city,
-      street: req.body.street,
+      name: req.body.eventName,
+      description: req.body.eventDescription,
+      state: req.body.eventState,
+      city: req.body.eventCity,
+      street: req.body.eventLocation,
+      date: req.body.eventDate,
+      stime: req.body.eventStartTime,
+      etime: req.body.eventEndTime,
       link: req.body.link
     })
       .then(() => {
