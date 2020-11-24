@@ -1,24 +1,27 @@
+{{!-- NAV BAR --}}
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header w-100">
             <a class="navbar-brand" href="/members">
-                <img src="/img/getogether-logo-full-xl.png" width="70" height="50" class="d-inline-block align-top"
+                <img src="/img/getogether-logo-full-xl.png" width="90" height="65" class="d-inline-block align-top"
                     alt="logo">
             </a>
-            <a class="navbar-brand pull-right" href="/logout">
+            <a class="navbar-brand pull-right text-info" href="/logout">
                 Logout
             </a>
-            <a class="navbar-brand pull-right" href="/events">
-                Events
+            <a class="navbar-brand pull-right text-info" href="/members">
+                Dashboard
             </a>
         </div>
     </div>
 </nav>
+{{!-- CREATE EVENT FORM --}}
 <main class="container">
-    <div class="jumbotron">
+    <div class="jumbotron shadow-lg">
         <h1 class="display-4">Create Event</h1>
         <form class="signup">
             <div class="row">
+                {{!-- LEFT COL --}}
                 <div class="col-sm-8">
                     <div class="form-group">
                         <label for="Event Name">Event Name</label>
@@ -40,10 +43,9 @@
                         <label for="Event Name">City</label>
                         <input type="text" class="form-control" id="event-city" placeholder="City">
                     </div>
-
                 </div>
+                {{!-- RIGHT COL --}}
                 <div class="col-sm-4">
-
                     <div class="form-group">
                         <label for="Event Date">Event Date</label>
                         <input type="date" style="width:250px;" class="form-control" id="event-date" placeholder="Date">
@@ -60,7 +62,7 @@
                     <div class="form-group">
                         <label for="Event End">Event Link</label>
                         <input type="text" style="width:250px;" class="form-control" id="event-link"
-                            placeholder="Optional Event Link for Virtual Events">
+                            placeholder="(optional)">
                     </div>
                     <div style="display: none" id="alert" class="alert alert-danger" role="alert">
                         <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
@@ -68,20 +70,17 @@
                     </div>
                 </div>
             </div>
-
-            <button type="submit" id="create-event" class="btn btn-primary">Create Event</button>
+            <button type="submit" id="create-event" class="btn btn-info mt-2">Create Event</button>
         </form>
     </div>
-
+    {{!-- UPCOMING EVENTS --}}
     <div class="container">
         <div class="row container">
             <div class="col-sm-12">
-                <h2 class="card-title">Attending Events:</h2>
+                <h2 class="card-title">Upcoming Events</h2>
                 {{#each events}}
                 <div class="card mt-3">
                     <div class="card-body">
-
-
                         <h5 class="card-title">{{this.dataValues.id}}. {{this.dataValues.name}}</h5>
                         <p class="card-text">{{this.dataValues.description}}</p>
                         <p class="card-text"><a href="api/join/{{this.dataValues.id}}"></a><button
@@ -92,13 +91,11 @@
                         {{!-- <li>
                             <p>
                                 {{this.dataValues.id}}. {{this.dataValues.name}}
-
                                 <button class="change-join" data-id="{{this.dataValues.id}}">
                                     Join Event
                                 </button>
                             </p>
                         </li> --}}
-
 
                     </div>
                 </div>
