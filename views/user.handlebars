@@ -1,37 +1,44 @@
+{{!-- NAV BAR --}}
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header w-100">
       <a class="navbar-brand" href="/members">
-        <img src="/img/getogether-logo-full-xl.png" width="70" height="50" class="d-inline-block align-top" alt="logo">
+        <img src="/img/getogether-logo-full-xl.png" width="90" height="65" class="d-inline-block align-top" alt="logo">
       </a>
-      <a class="navbar-brand pull-right" href="/logout">
+      <a class="navbar-brand pull-right text-info" href="/logout">
         Logout
       </a>
-      <a class="navbar-brand pull-right" href="/events">
+      <a class="navbar-brand pull-right text-info" href="/events">
         Events
       </a>
     </div>
   </div>
 </nav>
+{{!-- USER DASHBOARD --}}
 <div class="container">
-  <div class="jumbotron">
+  <div class="jumbotron shadow-lg">
     <image id="profileImage" src="/img/placeholder-image.png" />
     <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
     <h1 class="display-4">Hello, {{userInfo.email}}!</h1>
-
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-
+    <p>Wannabe Star Trek maniac. Coffee snob. Outgoing lotion accountant. Afraid of clowns and butterflies. Friendly
+      world lover. Flawless.
+    </p>
+{{!-- EVENTS ATTENDING BY USER --}}
   </div>
   <div class="container">
     <div class="row container">
       <div class="col-sm-12">
-        <h2 class="card-title">Attending Events:</h2>
+        <h3 class="card-title text-info">My Events</h3>
         <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+          <div class="card-body shadow-lg bg-info text-white">
+            <h4 class="card-title mt-2">Wizards Virtual Beer Festival{{events.name}}</h4>
+            <h6 class="card-text font-weight-light">30/11/2020{{events.stime}}</h6>
+            <p class="card-text">The Wizards Beer Festival is going digital this year as we bring the beer straight to
+              you while you stream the tastings with different breweries as we recreate our top 10 favorite Potter
+              scenes each featuring a guest brewer and their featured beer with a comedic twist. There will be music
+              from the Slytherin Sisters and the Red Headed Party Band as well as series trivia. </p>
+            <a href="#" class="btn btn-outline-warning mt-2">I can't attend anymore</a>
           </div>
         </div>
       </div>
