@@ -1,14 +1,18 @@
+{{!-- navbar --}}
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
     </div>
   </div>
 </nav>
+{{!-- main --}}
 <div class="container d-sm-flex mr-xs-0 ml-xs-0">
   <div class="row container">
     <div class="col-sm-3 justify-content-center"></div>
     <div class="col-sm-6 justify-content-center">
+      {{!-- large logo at center --}}
       <img src="/img/getogether-logo-full-SM.png" class="mx-auto d-block mt-5" alt="Logo">
+      {{!-- login form --}}
       <div class="card bg-white border-0 mt-3">
         <div class="card-header text-info bg-white">
           {{!-- <h1 class="display-4 font-weight-bold">Login Form</h1> --}}
@@ -26,6 +30,7 @@
             <button type="submit" class="btn btn-light">Login</button>
           </form>
           <br />
+          {{!-- link to signup page --}}
           <p>Or sign up <a href="/">here</a></p>
         </div>
       </div>
@@ -33,12 +38,13 @@
     <div class="col-sm-3 justify-content-center"></div>
   </div>
 </div>
+{{!-- footer --}}
 <footer class="footer text-center fixed-bottom">
   <div class="container">
-    <a href="https://github.com/Yigezu1/project2" class="btn btn-secondary mr-2 text" target="_blank"><i
-        class="fa fa-github" alt="Github Link"></i></a>
+    <a href="https://github.com/Yigezu1/project2" class="btn btn-dark mr-2" target="_blank"><i
+        class="fab fa-github fa-lg" alt="Github Link"></i></a>
   </div>
 </footer>
-
+{{!-- javascripts --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/login.js"></script>
