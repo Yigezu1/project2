@@ -1,21 +1,32 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="/logout">
+    <div class="navbar-header w-100">
+      <a class="navbar-brand" href="/members">
+        <img src="/img/getogether-logo-full-xl.png" width="70" height="50" class="d-inline-block align-top" alt="logo">
+      </a>
+      <a class="navbar-brand pull-right" href="/logout">
         Logout
       </a>
-      <a class="navbar-brand" href="/events">
+      <a class="navbar-brand pull-right" href="/events">
         Events
       </a>
     </div>
   </div>
 </nav>
 <div class="container">
+  <div class="jumbotron">
+    <image id="profileImage" src="/img/placeholder-image.png" />
+    <input id="imageUpload" type="file" name="profile_photo" placeholder="Photo" required="" capture>
+    <h1 class="display-4">Hello, {{userInfo.email}}!</h1>
+    
+    <hr class="my-4">
+    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+    
+  </div>
+  <div class="container">
   <div class="row container">
-    <div class="col-sm-6 d-flex justify-content-center">
-      <h2>Welcome <span class="member-name"></span></h2>
-    </div>
-    <div class="col-sm-6  d-flex justify-content-center">
+    <div class="col-sm-12">
+      <h2 class="card-title">Attending Events:</h2>
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Special title treatment</h5>
@@ -25,18 +36,9 @@
       </div>
     </div>
   </div>
-  <div class="row container">
-    <div class="col-sm-6 d-flex justify-content-center">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <a href="#" class="btn btn-primary">Go somewhere</a>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 <script type="text/javascript" src="/js/members.js"></script>
