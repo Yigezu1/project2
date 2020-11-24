@@ -24,25 +24,48 @@
     <p>Wannabe Star Trek maniac. Coffee snob. Outgoing lotion accountant. Afraid of clowns and butterflies. Friendly
       world lover. Flawless.
     </p>
-{{!-- EVENTS ATTENDING BY USER --}}
+    {{!-- EVENTS ATTENDING BY USER --}}
   </div>
   <div class="container">
     <div class="row container">
       <div class="col-sm-12">
-        <h3 class="card-title text-info">My Events</h3>
-        <div class="card">
+        <h3 class="card-title text-info"><i class="far fa-calendar-check ml-1 mr-3"></i>My Events</h3>
+        {{!---------------- EVENT CARD STARTS HERE ----------------}}
+        <div class="card mb-4">
           <div class="card-body shadow-lg bg-info text-white">
+            {{!-- EVENT TITLE --}}
+            <h4 class="card-title mt-2">2020 Virtual Turkey Trot{{events.name}}</h4>
+            {{!-- EVENT DATE --}}
+            <h6 class="card-text font-weight-light">26/11/2020{{events.stime}}</h6>
+            {{!-- EVENT DESCRIPTION --}}
+            <p class="card-text">The virtual race will “start” at 12:01 a.m. on Thursday, November 26 and “end” on Sunday,
+              November 29 at 11:59 p.m. And while it will be a lot of fun to have as many turkeys as possible trotting
+              on Thanksgiving morning, this will allow you to complete the race on your schedule.</p>
+            {{!-- RAINCHECK BTN --}}
+            <a href="#" class="btn btn-outline-warning mt-2"><i class="fas fa-times-circle mr-2"></i>I can't attend anymore</a>
+          </div>
+        </div>
+        {{!----------------- EVENT CARD ENDS HERE -----------------}}
+        {{!---------------- EVENT CARD STARTS HERE ----------------}}
+        <div class="card mb-4">
+          <div class="card-body shadow-lg bg-info text-white">
+            {{!-- EVENT TITLE --}}
             <h4 class="card-title mt-2">Wizards Virtual Beer Festival{{events.name}}</h4>
+            {{!-- EVENT DATE --}}
             <h6 class="card-text font-weight-light">30/11/2020{{events.stime}}</h6>
+            {{!-- EVENT DESCRIPTION --}}
             <p class="card-text">The Wizards Beer Festival is going digital this year as we bring the beer straight to
               you while you stream the tastings with different breweries as we recreate our top 10 favorite Potter
               scenes each featuring a guest brewer and their featured beer with a comedic twist. There will be music
               from the Slytherin Sisters and the Red Headed Party Band as well as series trivia. </p>
-            <a href="#" class="btn btn-outline-warning mt-2">I can't attend anymore</a>
+            {{!-- RAINCHECK BTN --}}
+            <a href="#" class="btn btn-outline-warning mt-2"><i class="fas fa-times-circle mr-2"></i>I can't attend anymore</a>
           </div>
         </div>
+        {{!----------------- EVENT CARD ENDS HERE -----------------}}
       </div>
     </div>
   </div>
 </div>
+{{!-- javascripts --}}
 <script type="text/javascript" src="/js/members.js"></script>
