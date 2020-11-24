@@ -50,9 +50,7 @@ module.exports = function(app) {
           email: req.user.email,
           id: req.user.id
         },
-        data: {
-          dbEventList
-        }
+        events: dbEventList
       });
     });
   });
