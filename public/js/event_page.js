@@ -109,9 +109,9 @@ $(document).ready(() => {
       type: "POST",
       data: id
     }).then(() => {
-      console.log("changed to", newBurger);
+      console.log("Joined an event");
       // Reload the page to get the updated list
-      window.location.replace("/events");
+      location.reload(true);
     });
   });
   function joinEvent() {

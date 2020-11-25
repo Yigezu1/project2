@@ -2,7 +2,8 @@
 const db = require("../models");
 const passport = require("../config/passport");
 const isAuthenticated = require("../config/middleware/isAuthenticated");
-
+const Sequelize = require("sequelize");
+const { Op } = require("sequelize");
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
@@ -55,9 +56,16 @@ module.exports = function(app) {
     // });
   });
 
-  app.get("/events", isAuthenticated, (req, res) => {
+  app.get("/events", (req, res) => {
     db.Event.findAll({
-      include: db.User
+      include: [
+        {
+          model: db.User
+        }
+      ],
+      where: {
+        [Op.not]: [Sequelize.literal("COALESCE(UserId, 0) = 1")]
+      }
     }).then(dbEventList => {
       res.render("events", {
         userInfo: {
