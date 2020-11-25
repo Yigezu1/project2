@@ -96,12 +96,24 @@ $(document).ready(() => {
       url: "/api/create-event",
       data: newEvent
     }).then(() => {
-      getEvents();
+      location.reload();
     });
   }
   //-------------------------------------------------------------
 
-  // This function adds user to the event
+  // This function adds user to the event - Yigezu
+  $(".join-event").on("click", function() {
+    const id = $(this).data("id");
+    // Send the PUT request.
+    $.ajax("/api/join-event/" + id, {
+      type: "POST",
+      data: id
+    }).then(() => {
+      console.log("changed to", newBurger);
+      // Reload the page to get the updated list
+      window.location.replace("/events");
+    });
+  });
   function joinEvent() {
     //code to add user to event
   }
