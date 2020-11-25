@@ -26,19 +26,33 @@ module.exports = function(app) {
   // Here we've add our isAuthenticated middleware to this route.
   // If a user who is not logged in tries to access this route they will be redirected to the signup page
   app.get("/members", isAuthenticated, (req, res) => {
-    db.Event.findAll({
-      include: db.User
+    db.User.findAll({
+      where: {
+        id: req.user.id
+      },
+      include: db.Event
     }).then(dbEventList => {
       res.render("user", {
         userInfo: {
-          email: req.user.email,
-          id: req.user.id
+          id: dbEventList[0].dataValues.id,
+          email: dbEventList[0].dataValues.email
         },
-        data: {
-          dbEventList
-        }
+        data: dbEventList[0].dataValues.Events
       });
     });
+    // db.Event.findAll({
+    //   include: db.User
+    // }).then(dbEventList => {
+    //   res.render("user", {
+    //     userInfo: {
+    //       email: req.user.email,
+    //       id: req.user.id
+    //     },
+    //     data: {
+    //       dbEventList
+    //     }
+    //   });
+    // });
   });
 
   app.get("/events", isAuthenticated, (req, res) => {
@@ -114,11 +128,11 @@ module.exports = function(app) {
 
   app.post("/api/join-event/:eventId", (req, res) => {
     db.Userevent.create({
-      // req.user.id
-      // req.params.eventId
+      UserId: req.user.id,
+      EventId: req.params.eventId
     })
       .then(() => {
-        res.json({});
+        res.end();
       })
       .catch(err => {
         res.status(401).json(err);
@@ -127,11 +141,13 @@ module.exports = function(app) {
 
   app.delete("/api/unjoin-event/:eventId", (req, res) => {
     db.Userevent.destroy({
-      // req.user.id
-      // req.params.eventId
+      where: {
+        UserId: req.user.id,
+        EventId: req.params.eventId
+      }
     })
       .then(() => {
-        res.json({});
+        res.end();
       })
       .catch(err => {
         res.status(401).json(err);

@@ -4,4 +4,14 @@ $(document).ready(() => {
   $.get("/api/user_data").then(data => {
     $(".member-name").text(data.email);
   });
+  // This function does an API call to delete event
+  $(".unjoin-event").on("click", function() {
+    const id = $(this).data("id");
+    $.ajax({
+      method: "DELETE",
+      url: "/api/unjoin-event/" + id
+    }).then(() => {
+      window.location.replace("/members");
+    });
+  });
 });
