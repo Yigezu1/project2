@@ -41,19 +41,6 @@ module.exports = function(app) {
         data: dbEventList[0].dataValues.Events
       });
     });
-    // db.Event.findAll({
-    //   include: db.User
-    // }).then(dbEventList => {
-    //   res.render("user", {
-    //     userInfo: {
-    //       email: req.user.email,
-    //       id: req.user.id
-    //     },
-    //     data: {
-    //       dbEventList
-    //     }
-    //   });
-    // });
   });
 
   app.get("/events", (req, res) => {
@@ -64,7 +51,7 @@ module.exports = function(app) {
         }
       ],
       where: {
-        [Op.not]: [Sequelize.literal("COALESCE(UserId, 0) = 1")]
+        [Op.not]: [Sequelize.literal("COALESCE(UserId, 0) = " + req.user.id)]
       }
     }).then(dbEventList => {
       res.render("events", {
@@ -177,25 +164,7 @@ module.exports = function(app) {
         include: db.Event
       }).then(dbEventList => {
         res.json(dbEventList);
-        // res.render("user", {
-        //   data: dbEventList
-        // });
       });
-
-      /* 
-      db.Event.findAll({
-        include: db.User
-      }).then(dbEventList => {
-        res.render("events", {
-          userInfo: {
-            email: req.user.email,
-            id: req.user.id
-          },
-          data: {
-            dbEventList
-          }
-        });
-      }); */
     }
   });
 };
